@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
 import { addPlanet } from '../utils/api';
+import { PlanetContext } from '../context/PlanetContext';
 
-const AddPlanet = ({ navigation, setBannerMessage, setBannerType }) => {
+const AddPlanet = ({ navigation }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [moons, setMoons] = useState('');
   const [moonNames, setMoonNames] = useState('');
   const [image, setImage] = useState('');
+  const {
+    loadPlanets
+  } = useContext(PlanetContext);
 
   const handleAddPlanet = async () => {
     const newPlanet = {
@@ -20,8 +24,7 @@ const AddPlanet = ({ navigation, setBannerMessage, setBannerType }) => {
 
     try {
       await addPlanet(newPlanet);
-      setBannerMessage('Planet added successfully');
-      setBannerType('success');
+      loadPlanets();
 
       // Clear the form fields
       setName('');
@@ -33,8 +36,7 @@ const AddPlanet = ({ navigation, setBannerMessage, setBannerType }) => {
       // Navigate back to the planet list (optional)
       navigation.goBack();
     } catch (error) {
-      setBannerMessage('Failed to add planet');
-      setBannerType('error');
+      console.log(error);
     }
   };
 

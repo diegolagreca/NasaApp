@@ -3,17 +3,12 @@ import { View, FlatList, Text, Pressable, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { PlanetContext } from '../context/PlanetContext';
 import { deletePlanet } from '../utils/api';
-import Banner from '../components/Banner';
 import styles from '../styles/planetListStyles';
 
 const PlanetList = ({ navigation }) => {
   const {
     planets,
-    bannerMessage,
-    setBannerMessage,
-    bannerType,
-    setBannerType,
-    loadPlanets,
+    loadPlanets
   } = useContext(PlanetContext);
 
   const handleDeletePlanet = async (id) => {
@@ -28,11 +23,8 @@ const PlanetList = ({ navigation }) => {
             try {
               await deletePlanet(id);
               loadPlanets();
-              setBannerMessage('Planet deleted successfully');
-              setBannerType('success');
             } catch (error) {
-              setBannerMessage('Failed to delete planet');
-              setBannerType('error');
+              console.log(error);
             }
           },
         },
@@ -42,13 +34,6 @@ const PlanetList = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/* Banner */}
-      <Banner
-        message={bannerMessage}
-        type={bannerType}
-        onDismiss={() => setBannerMessage('')}
-      />
-
       {/* Lista de planetas */}
       <FlatList
         data={planets}

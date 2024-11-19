@@ -11,9 +11,7 @@ const EditPlanet = ({ route, navigation }) => {
   const [moonNames, setMoonNames] = useState(planet.moon_names.join(', '));
   const [image, setImage] = useState(planet.image);
   const {
-    setBannerMessage,
-    setBannerType,
-    loadPlanets,
+    loadPlanets
   } = useContext(PlanetContext);
 
   const handleSave = async () => {
@@ -27,14 +25,10 @@ const EditPlanet = ({ route, navigation }) => {
 
     try {
       await updatePlanet(planet.id, updatedPlanet);
-      setBannerMessage('Planet updated successfully');
-      setBannerType('success');
       loadPlanets();
-
-      navigation.goBack(); // Go back to the previous screen
+      navigation.goBack(); 
     } catch (error) {
-      setBannerMessage('Failed to update planet');
-      setBannerType('error');
+      console.log(error);
     }
   };
   return (

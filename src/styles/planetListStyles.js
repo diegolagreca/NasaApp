@@ -9,7 +9,7 @@ export default StyleSheet.create({
   planetContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between', // Nombre a la izquierda y botones a la derecha
+    justifyContent: 'space-between',
     padding: 12,
     marginVertical: 6,
     backgroundColor: 'white',
@@ -21,17 +21,17 @@ export default StyleSheet.create({
     elevation: 2,
   },
   nameText: {
-    flex: 1, // Ocupa todo el espacio restante en la fila
+    flex: 1, 
     fontSize: 18,
     fontWeight: '600',
   },
   buttonGroup: {
-    flexDirection: 'row', // Asegura que los botones estén uno al lado del otro
+    flexDirection: 'row', 
     alignItems: 'center',
-    justifyContent: 'flex-end', // Alinea los botones a la derecha
+    justifyContent: 'flex-end', 
   },
   iconButton: {
-    marginLeft: 12, // Espaciado entre los botones
+    marginLeft: 12, 
     padding: 8,
   },
 });

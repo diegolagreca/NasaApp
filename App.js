@@ -1,19 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import PlanetList from './src/screens/PlanetList';
-import AddPlanet from './src/screens/AddPlanet';
+import { createStackNavigator } from '@react-navigation/stack';
+import PlanetList from './src/(tabs)/PlanetList';
+import AddPlanet from './src/(tabs)/AddPlanet';
+import PlanetDetails from './src/(stack)/PlanetDetails';
+import EditPlanet from './src/(stack)/EditPlanet';
 import { Ionicons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+function PlanetStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Planets" component={PlanetList} />
+      <Stack.Screen name="Planet Details" component={PlanetDetails} />
+      <Stack.Screen name="Edit Planet" component={EditPlanet} />
+    </Stack.Navigator>
+  );
+}
+
 
 export default function App() {
-  const [refreshList, setRefreshList] = useState(false);
-
-  const handlePlanetAdded = () => {
-    setRefreshList(prev => !prev); // Cambia el estado para forzar la actualización
-  };
-
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -27,12 +36,8 @@ export default function App() {
           },
         })}
       >
-        <Tab.Screen name="Planets">
-          {() => <PlanetList refreshList={refreshList} />}
-        </Tab.Screen>
-        <Tab.Screen name="Add Planet">
-          {() => <AddPlanet onPlanetAdded={handlePlanetAdded} />}
-        </Tab.Screen>
+        <Tab.Screen name="Planets" component={PlanetStack} />
+        <Tab.Screen name="Add Planet" component={AddPlanet} />
       </Tab.Navigator>
     </NavigationContainer>
   );

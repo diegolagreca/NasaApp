@@ -33,8 +33,8 @@ export default function EditPlanetModal({ visible, planet, onClose }) {
     };
 
     try {
-      await axios.put(`${BASE_URL}/${planet.id}`, updatedPlanet); // Usa Axios para guardar
-      onClose(); // Cierra el modal
+      await axios.put(`${BASE_URL}/${planet.id}`, updatedPlanet);  
+      onClose(); 
     } catch (error) {
       console.error('Failed to update planet:', error);
     }

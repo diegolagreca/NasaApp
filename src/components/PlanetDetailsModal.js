@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/modalStyles';
 
 export default function PlanetDetailsModal({ visible, planet, onClose }) {
-  if (!planet) return null; // Si no hay planeta seleccionado, no renderiza nada
+  if (!planet) return null; 
 
   return (
     <Modal visible={visible} transparent={true} animationType="fade">

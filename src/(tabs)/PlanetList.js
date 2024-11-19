@@ -34,9 +34,9 @@ const PlanetList = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/* Lista de planetas */}
       <FlatList
         data={planets}
+        contentContainerStyle={styles.list} 
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <View style={styles.planetContainer}>

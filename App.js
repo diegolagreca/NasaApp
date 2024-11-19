@@ -7,6 +7,7 @@ import PlanetList from './src/(tabs)/PlanetList';
 import AddPlanet from './src/(tabs)/AddPlanet';
 import PlanetDetails from './src/(stack)/PlanetDetails';
 import EditPlanet from './src/(stack)/EditPlanet';
+
 import { Ionicons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
@@ -14,8 +15,8 @@ const Stack = createStackNavigator();
 
 function PlanetStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="PlanetList" component={PlanetList} />
+    <Stack.Navigator>
+      <Stack.Screen name="PlanetList" component={PlanetList} options={{ headerShown: false }} />
       <Stack.Screen name="Planet Details" component={PlanetDetails} />
       <Stack.Screen name="Edit Planet" component={EditPlanet} />
     </Stack.Navigator>
@@ -24,7 +25,7 @@ function PlanetStack() {
 
 export default function App() {
   return (
-    <PlanetProvider> {/* Wrap entire navigation in PlanetProvider */}
+    <PlanetProvider>
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({

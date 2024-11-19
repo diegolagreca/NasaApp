@@ -1,37 +1,31 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#f5f5f5',
+    alignItems: 'center',
+  },
+  list: {
+    width: Math.min(width * 0.85) // 85%
   },
   planetContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 12,
-    marginVertical: 6,
-    backgroundColor: 'white',
-    borderRadius: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
+    alignItems: 'center',
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
   },
-  nameText: {
-    flex: 1, 
+  name: {
     fontSize: 18,
-    fontWeight: '600',
   },
   buttonGroup: {
-    flexDirection: 'row', 
-    alignItems: 'center',
-    justifyContent: 'flex-end', 
+    flexDirection: 'row',
   },
   iconButton: {
-    marginLeft: 12, 
-    padding: 8,
+    marginLeft: 10,
   },
 });

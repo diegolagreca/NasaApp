@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { PlanetContext } from '../context/PlanetContext';
 import { updatePlanet } from '../utils/api';
+import styles from '../styles/planetFormStyles';
 
 const EditPlanet = ({ route, navigation }) => {
   const { planet } = route.params;
@@ -26,7 +27,7 @@ const EditPlanet = ({ route, navigation }) => {
     try {
       await updatePlanet(planet.id, updatedPlanet);
       loadPlanets();
-      navigation.goBack(); 
+      navigation.goBack();
     } catch (error) {
       console.log(error);
     }
@@ -64,23 +65,11 @@ const EditPlanet = ({ route, navigation }) => {
         onChangeText={setImage}
         placeholder="Image URL"
       />
-      <Button title="Save" onPress={handleSave} />
+      <TouchableOpacity style={styles.button} onPress={handleSave}>
+        <Text style={styles.buttonText}>Save</Text>
+      </TouchableOpacity>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
-    padding: 8,
-    marginBottom: 16,
-  },
-});
 
 export default EditPlanet;

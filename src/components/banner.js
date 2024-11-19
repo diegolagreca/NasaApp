@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
-import { Text, Animated } from 'react-native';
-import styles from '../styles/bannerStyles';
+import { View, Text, StyleSheet, Animated } from 'react-native';
 
-
-export default function Banner({ message, type, onDismiss }) {
-  const opacity = new Animated.Value(1);
+const Banner = ({ message, type, onDismiss }) => {
+  const opacity = React.useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
     if (message) {
@@ -14,7 +12,7 @@ export default function Banner({ message, type, onDismiss }) {
           duration: 500,
           useNativeDriver: true,
         }).start(() => {
-          onDismiss(); 
+          onDismiss();
         });
       }, 3000);
 
@@ -26,7 +24,31 @@ export default function Banner({ message, type, onDismiss }) {
 
   return (
     <Animated.View style={[styles.banner, styles[type], { opacity }]}>
-      <Text style={styles.bannerText}>{message}</Text>
+      <Text style={styles.bannerText}>{message}</Text> 
     </Animated.View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  banner: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    padding: 16,
+    zIndex: 10,
+  },
+  success: {
+    backgroundColor: 'green',
+  },
+  error: {
+    backgroundColor: 'red',
+  },
+  bannerText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+});
+
+export default Banner;

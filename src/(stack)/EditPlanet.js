@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
-import { View, TextInput, Button } from 'react-native';
-import { updatePlanet } from '../utils/api'; 
-import Banner from '../components/Banner';
-import styles from '../styles/planetFormStyles';
+import React, { useState, useContext } from 'react';
+import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { PlanetContext } from '../context/PlanetContext';
+import { updatePlanet } from '../utils/api';
 
-export default function EditPlanet({ route, navigation }) {
+const EditPlanet = ({ route, navigation }) => {
   const { planet } = route.params;
   const [name, setName] = useState(planet.name);
   const [description, setDescription] = useState(planet.description);
   const [moons, setMoons] = useState(planet.moons.toString());
   const [moonNames, setMoonNames] = useState(planet.moon_names.join(', '));
   const [image, setImage] = useState(planet.image);
-  const [bannerMessage, setBannerMessage] = useState('');
-  const [bannerType, setBannerType] = useState('success');
+  const {
+    setBannerMessage,
+    setBannerType,
+    loadPlanets,
+  } = useContext(PlanetContext);
 
   const handleSave = async () => {
     const updatedPlanet = {
@@ -24,25 +26,67 @@ export default function EditPlanet({ route, navigation }) {
     };
 
     try {
-      await updatePlanet(planet.id, updatedPlanet); 
+      await updatePlanet(planet.id, updatedPlanet);
       setBannerMessage('Planet updated successfully');
       setBannerType('success');
-      navigation.navigate('Planets'); 
+      loadPlanets();
+
+      navigation.goBack(); // Go back to the previous screen
     } catch (error) {
       setBannerMessage('Failed to update planet');
       setBannerType('error');
     }
   };
-
   return (
     <View style={styles.container}>
-      <Banner message={bannerMessage} type={bannerType} onDismiss={() => setBannerMessage('')} />
-      <TextInput style={styles.input} value={name} onChangeText={setName} placeholder="Name" />
-      <TextInput style={styles.input} value={description} onChangeText={setDescription} placeholder="Description" />
-      <TextInput style={styles.input} value={moons} onChangeText={setMoons} keyboardType="numeric" placeholder="Number of Moons" />
-      <TextInput style={styles.input} value={moonNames} onChangeText={setMoonNames} placeholder="Moon Names (comma-separated)" />
-      <TextInput style={styles.input} value={image} onChangeText={setImage} placeholder="Image URL" />
+      <TextInput
+        style={styles.input}
+        value={name}
+        onChangeText={setName}
+        placeholder="Name"
+      />
+      <TextInput
+        style={styles.input}
+        value={description}
+        onChangeText={setDescription}
+        placeholder="Description"
+      />
+      <TextInput
+        style={styles.input}
+        value={moons}
+        onChangeText={setMoons}
+        placeholder="Number of Moons"
+        keyboardType="numeric"
+      />
+      <TextInput
+        style={styles.input}
+        value={moonNames}
+        onChangeText={setMoonNames}
+        placeholder="Moon Names (comma-separated)"
+      />
+      <TextInput
+        style={styles.input}
+        value={image}
+        onChangeText={setImage}
+        placeholder="Image URL"
+      />
       <Button title="Save" onPress={handleSave} />
     </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    padding: 8,
+    marginBottom: 16,
+  },
+});
+
+export default EditPlanet;

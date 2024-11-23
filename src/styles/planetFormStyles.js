@@ -14,7 +14,7 @@ export default StyleSheet.create({
         marginBottom: 16,
     },
     button: {
-        backgroundColor: '#4CAF50', // Green 
+        backgroundColor: '#4CAF50',
         paddingVertical: 12,
         paddingHorizontal: 20,
         borderRadius: 8,
@@ -26,5 +26,8 @@ export default StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    placeholderGroup: {
+        placeholderTextColor: '#666666',
+    }
 
 });

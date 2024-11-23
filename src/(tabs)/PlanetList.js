@@ -1,15 +1,16 @@
-import React, { useContext } from 'react';
-import { View, FlatList, Text, Pressable, Alert } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, FlatList, Text, Pressable, Alert, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { PlanetContext } from '../context/PlanetContext';
 import { deletePlanet } from '../utils/api';
+import PlanetFilter from '../components/PlanetFilter';
+import CameraModal from '../components/CameraModal';
 import styles from '../styles/planetListStyles';
 
 const PlanetList = ({ navigation }) => {
-  const {
-    planets,
-    loadPlanets
-  } = useContext(PlanetContext);
+  const { planets, loadPlanets } = useContext(PlanetContext);
+  const [filteredPlanets, setFilteredPlanets] = useState(planets);
+  const [isCameraModalVisible, setIsCameraModalVisible] = useState(false);
 
   const handleDeletePlanet = async (id) => {
     Alert.alert(
@@ -34,9 +35,18 @@ const PlanetList = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <PlanetFilter planets={planets} setFilteredPlanets={setFilteredPlanets} />
+
+      <Button title="Camera" onPress={() => setIsCameraModalVisible(true)} />
+
+      <CameraModal
+        visible={isCameraModalVisible}
+        onClose={() => setIsCameraModalVisible(false)}
+      />
+
       <FlatList
-        data={planets}
-        contentContainerStyle={styles.list} 
+        data={filteredPlanets}
+        contentContainerStyle={styles.list}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <View style={styles.planetContainer}>

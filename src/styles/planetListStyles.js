@@ -11,6 +11,12 @@ export default StyleSheet.create({
   list: {
     width: Math.min(width * 0.85) // 85%
   },
+  filterContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
   planetContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -27,5 +33,18 @@ export default StyleSheet.create({
   },
   iconButton: {
     marginLeft: 10,
+  },
+  button: {
+    backgroundColor: '#4CAF50',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

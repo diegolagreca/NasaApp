@@ -47,12 +47,16 @@ const AddPlanet = ({ navigation }) => {
         value={name}
         onChangeText={setName}
         placeholder="Name"
+        placeholderTextColor={styles.placeholderGroup.placeholderTextColor}
+
       />
       <TextInput
         style={styles.input}
         value={description}
         onChangeText={setDescription}
         placeholder="Description"
+        placeholderTextColor={styles.placeholderGroup.placeholderTextColor}
+
       />
       <TextInput
         style={styles.input}
@@ -60,18 +64,24 @@ const AddPlanet = ({ navigation }) => {
         onChangeText={setMoons}
         placeholder="Number of Moons"
         keyboardType="numeric"
+        placeholderTextColor={styles.placeholderGroup.placeholderTextColor}
+
       />
       <TextInput
         style={styles.input}
         value={moonNames}
         onChangeText={setMoonNames}
         placeholder="Moon Names (comma-separated)"
+        placeholderTextColor={styles.placeholderGroup.placeholderTextColor}
+
       />
       <TextInput
         style={styles.input}
         value={image}
         onChangeText={setImage}
         placeholder="Image URL"
+        placeholderTextColor={styles.placeholderGroup.placeholderTextColor}
+
       />
       <TouchableOpacity style={styles.button} onPress={handleAddPlanet}>
         <Text style={styles.buttonText}>Add Planet</Text>

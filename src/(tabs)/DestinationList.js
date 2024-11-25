@@ -5,37 +5,11 @@ import { DestinationContext } from '../context/DestinationContext';
 import { deleteDestination } from '../utils/api';
 import DestinationFilter from '../components/DestinationFilter';
 import styles from '../styles/destinationListStyles';
-import { FontAwesome } from '@expo/vector-icons';
-import { likeDestination, unlikeDestination } from '../utils/api';
 
 const DestinationList = ({ navigation }) => {
   const { destinations, loadDestinations } = useContext(DestinationContext);
   const [filteredDestinations, setFilteredDestinations] = useState(destinations);
-  const [hasLiked, setHasLiked] = useState(false);
 
-  const handleLike = async (destination) => {
-    try {
-      const likedDestination = destination;
-      likedDestination.favourite = true;
-      await likeDestination(destination.id, likedDestination);
-      setHasLiked(true);
-    } catch (error) {
-      console.error('Error liking the destination:', error);
-      Alert.alert('Error', `Couldn't like this destination. Error log: ${error.message}`);
-    }
-  };
-
-  const handleUnlike = async (destination) => {
-    try {
-      const dislikedDestination = destination;
-      dislikedDestination.favourite = false;
-      await unlikeDestination(destination.id, dislikedDestination);
-      setHasLiked(false);
-    } catch (error) {
-      console.error('Error disliking:', error);
-      Alert.alert('Error', `Couldn't dislike this destination. Error log: ${error.message}`);
-    }
-  };
 
   const handleDeleteDestination = async (id) => {
     Alert.alert(
@@ -75,9 +49,7 @@ const DestinationList = ({ navigation }) => {
               {item.name}
             </Text>
             <Text> {console.log(item)} </Text>
-            <TouchableOpacity onPress={() => hasLiked ? handleUnlike( item ) : handleLike( item ) }>
-                <FontAwesome name={hasLiked ? 'heart' : 'heart-o'} size={24} color={hasLiked ? 'red' : 'white'} />
-              </TouchableOpacity>
+          
             <View style={styles.buttonGroup}>
 
 

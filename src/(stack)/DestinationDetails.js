@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styles from '../styles/destinationDetailsStyles';
 import { likeDestination, unlikeDestination } from '../utils/api';
@@ -7,6 +7,15 @@ import { FontAwesome } from '@expo/vector-icons';
 export default function DestinationDetails({ route }) {
   const { destination } = route.params;
   const [hasLiked, setHasLiked] = useState(false);
+
+  useEffect(() => {
+    const checkLikes = async () => {
+      if (destination.favourite == true) {
+        setHasLiked(true);
+      }
+    };
+    checkLikes();
+  }, []);
 
   const handleLike = async () => {
     try {

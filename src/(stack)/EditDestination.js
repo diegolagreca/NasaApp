@@ -10,7 +10,6 @@ const EditDestination = ({ route, navigation }) => {
   const [name, setName] = useState(destination.name);
   const [description, setDescription] = useState(destination.description);
   const [difficulty, setDifficulty] = useState(destination.difficulty);
-  const [favourite, setFavourite] = useState(destination.favourite);
   const {
     loadDestinations
   } = useContext(DestinationContext);
@@ -51,13 +50,6 @@ const EditDestination = ({ route, navigation }) => {
         setSelectedDifficulty={setDifficulty}
       />
 
-
-      <TextInput
-        style={styles.input}
-        value={favourite}
-        onChangeText={setFavourite}
-        placeholder="Favourite"
-      />
       <TouchableOpacity style={styles.button} onPress={handleSave}>
         <Text style={styles.buttonText}>Save</Text>
       </TouchableOpacity>

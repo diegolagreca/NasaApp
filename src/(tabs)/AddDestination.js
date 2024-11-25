@@ -64,14 +64,6 @@ const AddDestination = ({ navigation }) => {
         setSelectedDifficulty={setDifficulty}
       />
 
-      <TextInput
-        style={styles.input}
-        value={favourite}
-        onChangeText={setFavourite}
-        placeholder="Favourite"
-        placeholderTextColor={styles.placeholderGroup.placeholderTextColor}
-
-      />
       <TouchableOpacity style={styles.button} onPress={handleAddDestination}>
         <Text style={styles.buttonText}>Add Destination</Text>
       </TouchableOpacity>

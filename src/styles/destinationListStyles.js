@@ -17,7 +17,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     marginBottom: 16,
   },
-  planetContainer: {
+  destinationContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

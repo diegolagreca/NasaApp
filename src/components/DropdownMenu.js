@@ -5,8 +5,8 @@ function DropdownMenu({ selectedFilter, setSelectedFilter }) {
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([
     { label: 'No Filter', value: 'no_filter' },
-    { label: 'No Moons', value: 'no_moons' },
-    { label: 'Moons', value: 'moons' },
+    { label: 'Not-Favourites', value: 'no_favs' },
+    { label: 'Favourites', value: 'favs' },
   ]);
 
   return (
@@ -15,7 +15,7 @@ function DropdownMenu({ selectedFilter, setSelectedFilter }) {
       value={selectedFilter}
       items={items}
       setOpen={setOpen}
-      setValue={setSelectedFilter} // Actualiza el estado local en PlanetFilter.js
+      setValue={setSelectedFilter} 
       setItems={setItems}
     />
   );

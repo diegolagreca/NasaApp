@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://content-hyena-factually.ngrok-free.app/planets';
+export const BASE_URL = 'http://161.35.143.238:8000/dvazquez';

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "NasaApp",
-    "slug": "NasaApp",
+    "name": "TripApp",
+    "slug": "TripApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

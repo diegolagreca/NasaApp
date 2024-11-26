@@ -19,7 +19,6 @@ const EditDestination = ({ route, navigation }) => {
       name,
       description,
       difficulty,
-      favourite,
     };
 
     try {

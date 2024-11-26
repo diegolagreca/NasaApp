@@ -44,7 +44,7 @@ export const deleteDestination = async (id) => {
 
 export const likeDestination = async (id, updatedDestination) => {
   try {
-    const response = await axios.put(`${BASE_URL}/${id}`, updatedDestination);
+    const response = await axios.patch(`${BASE_URL}/${id}`, updatedDestination);
     return response.data;
   } catch (error) {
     console.error('Error liking destination:', error);
@@ -54,7 +54,8 @@ export const likeDestination = async (id, updatedDestination) => {
 
 export const unlikeDestination = async (id, updatedDestination) => {
   try {
-    const response = await axios.put(`${BASE_URL}/${id}`, updatedDestination);
+    console.log(updatedDestination)
+    const response = await axios.patch(`${BASE_URL}/${id}`, updatedDestination);
     return response.data;
   } catch (error) {
     console.error('Error disliking destination:', error);

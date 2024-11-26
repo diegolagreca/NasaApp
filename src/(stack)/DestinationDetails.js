@@ -6,7 +6,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 export default function DestinationDetails({ route }) {
   const { destination } = route.params;
-  const [hasLiked, setHasLiked] = useState(false);
+  const [hasLiked, setHasLiked] = useState();
 
   useEffect(() => {
     const checkLikes = async () => {
@@ -17,27 +17,25 @@ export default function DestinationDetails({ route }) {
     checkLikes();
   }, []);
 
-  const handleLike = async () => {
+  const handleLike = () => {
     try {
       const likedDestination = destination;
       likedDestination.favourite = true;
-      await likeDestination(destination.id, likedDestination);
+      likeDestination(destination.id, likedDestination);
       setHasLiked(true);
     } catch (error) {
       console.error('Error liking the destination:', error);
-      Alert.alert('Error', `Couldn't like this destination. Error log: ${error.message}`);
     }
   };
 
-  const handleUnlike = async () => {
+  const handleUnlike = () => {
     try {
       const dislikedDestination = destination;
-      dislikedDestination.favourite = false;
-      await unlikeDestination(destination.id, dislikedDestination);
+      destination.favourite = false;
+      unlikeDestination(destination.id, dislikedDestination);
       setHasLiked(false);
     } catch (error) {
       console.error('Error disliking:', error);
-      Alert.alert('Error', `Couldn't dislike this destination. Error log: ${error.message}`);
     }
   };
 

@@ -48,7 +48,6 @@ const DestinationList = ({ navigation }) => {
             >
               {item.name}
             </Text>
-            <Text> {console.log(item)} </Text>
           
             <View style={styles.buttonGroup}>
 

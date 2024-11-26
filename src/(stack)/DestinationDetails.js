@@ -6,7 +6,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 export default function DestinationDetails({ route }) {
   const { destination } = route.params;
-  const [hasLiked, setHasLiked] = useState();
+  const [hasLiked, setHasLiked] = useState(false);
 
   useEffect(() => {
     const checkLikes = async () => {

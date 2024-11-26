@@ -18,16 +18,18 @@ const EditDestination = ({ route, navigation }) => {
     const updatedDestination = {
       name,
       description,
-      difficulty,
+      difficulty
     };
+    navigation.goBack();
 
     try {
       await updateDestination(destination.id, updatedDestination);
       loadDestinations();
-      navigation.goBack();
     } catch (error) {
       console.log(error);
     }
+    navigation.goBack();
+
   };
   return (
     <View style={styles.container}>
